@@ -102,18 +102,13 @@ export class SheetsApiService {
     if (this.useMock) {
       return of(this.mockUpsert<T>(sheet, payload, true));
     }
+    // Do NOT silently mock writes — surface sheet/API errors to admin UI
     return this.postJson<T>({
       action: 'create',
       sheet,
       spreadsheet: SHEET_SPREADSHEET[sheet],
       data: payload,
-    }).pipe(
-      switchMap((res) => {
-        if (this.liveFailed(res)) return of(this.mockUpsert<T>(sheet, payload, true));
-        return of(res);
-      }),
-      catchError(() => of(this.mockUpsert<T>(sheet, payload, true))),
-    );
+    });
   }
 
   update<T = CmsRecord>(
@@ -130,13 +125,7 @@ export class SheetsApiService {
       spreadsheet: SHEET_SPREADSHEET[sheet],
       id,
       data: payload,
-    }).pipe(
-      switchMap((res) => {
-        if (this.liveFailed(res)) return of(this.mockUpsert<T>(sheet, { ...payload, id }, false));
-        return of(res);
-      }),
-      catchError(() => of(this.mockUpsert<T>(sheet, { ...payload, id }, false))),
-    );
+    });
   }
 
   delete(sheet: SheetName, id: string): Observable<ApiResponse<null>> {
