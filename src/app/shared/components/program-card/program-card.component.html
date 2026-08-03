@@ -1,0 +1,29 @@
+<article class="program-card card-soft">
+  <a [routerLink]="programLink()" class="program-card__link">
+    @if (program().image) {
+      <div class="program-card__media">
+        <img [src]="program().image" [alt]="program().title" loading="lazy" />
+      </div>
+    }
+    <div class="program-card__body">
+      @if (program().level || program().duration) {
+        <div class="program-card__meta">
+          @if (program().level) {
+            <span class="program-card__badge">{{ program().level }}</span>
+          }
+          @if (program().duration) {
+            <span class="program-card__duration">{{ program().duration }}</span>
+          }
+        </div>
+      }
+      <h3 class="program-card__title">{{ program().title }}</h3>
+      @if (program().subtitle) {
+        <p class="program-card__subtitle">{{ program().subtitle }}</p>
+      }
+      @if (program().description) {
+        <p class="program-card__description">{{ program().description }}</p>
+      }
+      <span class="program-card__cta">View program →</span>
+    </div>
+  </a>
+</article>

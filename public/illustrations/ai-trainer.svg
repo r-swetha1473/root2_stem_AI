@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="AI trainer">
+  <rect width="200" height="200" rx="24" fill="#e8f0fe"/>
+
+  <circle cx="100" cy="68" r="28" fill="#fff" stroke="#002147" stroke-width="2.5"/>
+  <path d="M88 68c0-6 5-10 12-10s12 4 12 10" stroke="#0056b3" stroke-width="2.5" fill="none"/>
+  <rect x="56" y="108" width="88" height="56" rx="12" fill="#fff" stroke="#002147" stroke-width="2.5"/>
+  <path d="M72 128h56M72 144h40" stroke="#002147" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+  <circle cx="128" cy="136" r="10" fill="#68bb59"/>
+  <path d="M76 156h48" stroke="#0056b3" stroke-width="3" stroke-linecap="round"/>
+</svg>

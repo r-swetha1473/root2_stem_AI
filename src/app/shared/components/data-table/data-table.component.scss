@@ -1,0 +1,39 @@
+.data-table {
+  overflow: hidden;
+
+  &__toolbar {
+    padding: 1rem 1rem 0;
+  }
+
+  &__search {
+    width: 100%;
+    max-width: 22rem;
+    margin: 0;
+  }
+
+  &__wrap {
+    overflow-x: auto;
+  }
+
+  &__table {
+    width: 100%;
+    min-width: 640px;
+  }
+
+  &__actions-header,
+  &__actions {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  &__empty {
+    margin: 0;
+    padding: 2rem 1rem;
+    text-align: center;
+    color: rgba(0, 33, 71, 0.6);
+  }
+}
+
+.admin-dark .data-table {
+  background: #111827;
+}

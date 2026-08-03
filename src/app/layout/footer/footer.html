@@ -1,0 +1,84 @@
+<footer class="bg-navy text-white pt-14 pb-8 px-4 md:px-6">
+  <div class="container-r2 min-w-0">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-10">
+      <div class="min-w-0">
+        <a routerLink="/" class="inline-flex items-center gap-2.5 mb-4">
+          <img
+            src="/images/logo-icon.svg"
+            alt=""
+            class="h-10 w-10 rounded-xl bg-white/95 p-1 shrink-0"
+            width="40"
+            height="40"
+          />
+          <span class="leading-none">
+            <span class="block font-display font-extrabold text-white text-lg tracking-tight">
+              ROOT<span class="text-stem-green">2</span>
+            </span>
+            <span class="block text-[10px] font-semibold tracking-[0.14em] text-sky uppercase mt-0.5">
+              STEM AI
+            </span>
+          </span>
+        </a>
+        <p class="text-white/75 text-sm leading-relaxed mb-1">{{ footer()?.subtitle }}</p>
+        <p class="text-white/55 text-sm">{{ footer()?.description }}</p>
+      </div>
+
+      <div class="min-w-0">
+        <h3 class="font-display font-semibold text-base mb-3">Quick Links</h3>
+        <ul class="space-y-2">
+          @for (link of quickLinks; track link.path) {
+            <li>
+              <a [routerLink]="link.path" class="text-white/70 hover:text-sky text-sm transition-colors">
+                {{ link.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="min-w-0">
+        <h3 class="font-display font-semibold text-base mb-3">Programs</h3>
+        <ul class="space-y-2">
+          @for (link of programLinks; track link.path) {
+            <li>
+              <a [routerLink]="link.path" class="text-white/70 hover:text-sky text-sm transition-colors">
+                {{ link.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="min-w-0 overflow-hidden">
+        <h3 class="font-display font-semibold text-base mb-3">Stay Updated</h3>
+        <p class="text-white/70 text-sm mb-3">{{ footer()?.newsletter_text }}</p>
+        <app-newsletter />
+        <div class="mt-5 space-y-2 text-sm text-white/70 break-words">
+          @if (settings()?.email) {
+            <a [href]="'mailto:' + settings()!.email" class="block hover:text-sky">{{ settings()!.email }}</a>
+          }
+          @if (settings()?.phone) {
+            <a [href]="'tel:' + settings()!.phone" class="block hover:text-sky">{{ settings()!.phone }}</a>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-white/10">
+      <p class="text-white/50 text-sm text-center md:text-left">{{ settings()?.copyright }}</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+        @for (s of socials(); track s.id) {
+          <a
+            [href]="s.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-white/60 hover:text-sky transition-colors text-sm capitalize"
+            [attr.aria-label]="s.title"
+          >
+            {{ s.platform }}
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+</footer>

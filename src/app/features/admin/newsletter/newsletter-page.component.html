@@ -1,0 +1,50 @@
+<div class="admin-page">
+  <header class="page-header">
+    <div>
+      <h1>Newsletter Subscribers</h1>
+      <p class="subtitle">Export subscriber list as CSV</p>
+    </div>
+    <button mat-flat-button color="primary" type="button" (click)="exportCsv()">
+      <mat-icon>download</mat-icon>
+      Export CSV
+    </button>
+  </header>
+
+  <div class="toolbar card-soft">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic" class="search-field">
+      <mat-label>Search email</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput [value]="search()" (input)="onSearch($any($event.target).value)" />
+    </mat-form-field>
+  </div>
+
+  <div class="table-wrap card-soft">
+    @if (loading()) {
+      <div class="loading-row"><r2-loading-spinner [size]="32" /></div>
+    } @else {
+      <table mat-table [dataSource]="rows()" class="admin-table">
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let row">{{ row.email ?? row.title }}</td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let row"><span class="status-pill active">{{ row.status }}</span></td>
+        </ng-container>
+        <ng-container matColumnDef="created_at">
+          <th mat-header-cell *matHeaderCellDef>Subscribed</th>
+          <td mat-cell *matCellDef="let row">{{ row.created_at | date: 'mediumDate' }}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns"></tr>
+      </table>
+      <mat-paginator
+        [length]="total()"
+        [pageIndex]="pageIndex()"
+        [pageSize]="pageSize()"
+        [pageSizeOptions]="[10, 25, 50, 100]"
+        (page)="onPage($event)"
+      />
+    }
+  </div>
+</div>

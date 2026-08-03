@@ -1,0 +1,48 @@
+<article class="workshop-card card-soft" [class.workshop-card--past]="isPast()">
+  @if (workshop().image) {
+    <div class="workshop-card__media">
+      <img [src]="workshop().image" [alt]="workshop().title" loading="lazy" />
+    </div>
+  }
+  <div class="workshop-card__body">
+    <div class="workshop-card__meta">
+      @if (workshop().date) {
+        <span class="workshop-card__date">{{ workshop().date }}</span>
+      }
+      @if (workshop().venue) {
+        <span class="workshop-card__venue">{{ workshop().venue }}</span>
+      }
+    </div>
+    <h3 class="workshop-card__title">{{ workshop().title }}</h3>
+    @if (workshop().subtitle) {
+      <p class="workshop-card__subtitle">{{ workshop().subtitle }}</p>
+    }
+    @if (workshop().description) {
+      <p class="workshop-card__description">{{ workshop().description }}</p>
+    }
+    @if (workshop().trainer) {
+      <p class="workshop-card__trainer">Facilitator: {{ workshop().trainer }}</p>
+    }
+    <div class="workshop-card__actions">
+      @if (!isPast()) {
+        @if (workshop().register_link) {
+          <a
+            class="btn-primary workshop-card__register"
+            [href]="workshop().register_link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Register
+          </a>
+        } @else {
+          <button type="button" class="btn-primary workshop-card__register" (click)="onRegister($event)">
+            Register
+          </button>
+        }
+      } @else {
+        <span class="workshop-card__past-label">Completed</span>
+      }
+      <a routerLink="/workshops" class="btn-secondary">All workshops</a>
+    </div>
+  </div>
+</article>

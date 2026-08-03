@@ -1,0 +1,92 @@
+<div class="dash">
+  <header class="dash-intro">
+    <div>
+      <h2>Overview</h2>
+      <p>A calm snapshot of content, engagement, and growth — built for operators, not spreadsheets.</p>
+    </div>
+    <a routerLink="/admin/settings" class="dash-cta">
+      <mat-icon>tune</mat-icon>
+      Website settings
+    </a>
+  </header>
+
+  @if (loading()) {
+    <div class="stat-grid">
+      @for (i of [1, 2, 3, 4]; track i) {
+        <div class="stat-card skeleton">
+          <div class="sk sk-icon"></div>
+          <div class="sk sk-line"></div>
+          <div class="sk sk-line short"></div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="stat-grid">
+      @for (stat of stats(); track stat.label) {
+        <a [routerLink]="stat.link" class="stat-card" [attr.data-tone]="stat.color">
+          <span class="stat-icon"><mat-icon>{{ stat.icon }}</mat-icon></span>
+          <div>
+            <p class="stat-value">{{ stat.value }}</p>
+            <p class="stat-label">{{ stat.label }}</p>
+          </div>
+        </a>
+      }
+    </div>
+
+    <div class="dash-grid">
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Content mix</h3>
+          <span>Live inventory</span>
+        </div>
+        <div class="bars">
+          @for (item of chartData(); track item.label) {
+            <div class="bar-row">
+              <div class="bar-meta">
+                <span>{{ item.label }}</span>
+                <strong>{{ item.value }}</strong>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" [style.width.%]="(item.value / maxChart()) * 100"></div>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Recent inbox</h3>
+          <a routerLink="/admin/contacts">View all</a>
+        </div>
+        @if (!recentContacts().length) {
+          <p class="empty">No messages yet.</p>
+        } @else {
+          <ul class="inbox">
+            @for (msg of recentContacts(); track msg.id) {
+              <li>
+                <div>
+                  <strong>{{ msg.name || msg.title }}</strong>
+                  <p>{{ msg.subject || msg.message || 'Contact message' }}</p>
+                </div>
+                <span class="pill" [class.unread]="!msg.read">{{ msg.read ? 'Read' : 'New' }}</span>
+              </li>
+            }
+          </ul>
+        }
+      </section>
+    </div>
+
+    <section class="panel shortcuts">
+      <div class="panel-head">
+        <h3>Quick actions</h3>
+      </div>
+      <div class="shortcut-grid">
+        <a routerLink="/admin/blogs"><mat-icon>article</mat-icon><span>Write a blog</span></a>
+        <a routerLink="/admin/workshops"><mat-icon>event</mat-icon><span>Add workshop</span></a>
+        <a routerLink="/admin/programs"><mat-icon>school</mat-icon><span>New program</span></a>
+        <a routerLink="/admin/gallery"><mat-icon>photo_library</mat-icon><span>Upload gallery</span></a>
+      </div>
+    </section>
+  }
+</div>

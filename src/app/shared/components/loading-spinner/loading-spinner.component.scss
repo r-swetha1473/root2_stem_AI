@@ -1,0 +1,28 @@
+.loading-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    animation: r2-spin 0.9s linear infinite;
+  }
+
+  &__track {
+    stroke: rgba(0, 86, 179, 0.15);
+  }
+
+  &__arc {
+    stroke: var(--r2-royal);
+    stroke-linecap: round;
+    stroke-dasharray: 90 150;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes r2-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

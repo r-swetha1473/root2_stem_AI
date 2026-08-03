@@ -1,0 +1,94 @@
+@if (notFound()) {
+  <section class="section-pad text-center">
+    <h1 class="text-3xl font-bold mb-4">Workshop not found</h1>
+    <a routerLink="/workshops" class="btn-primary">Back to Workshops</a>
+  </section>
+} @else if (workshop(); as w) {
+  <section class="section-pad bg-mesh pt-28 md:pt-32">
+    <div class="container-r2">
+      <a routerLink="/workshops" class="text-royal text-sm font-semibold mb-4 inline-block">← All Workshops</a>
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div appGsapReveal>
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ w.title }}</h1>
+          <p class="text-xl text-sky font-medium mb-4">{{ w.subtitle }}</p>
+          <p class="text-navy/70 leading-relaxed mb-6">{{ w.description }}</p>
+          <div class="grid sm:grid-cols-2 gap-4 mb-8">
+            <div class="card-soft p-4">
+              <p class="text-xs text-navy/50 uppercase font-semibold">Date</p>
+              <p class="font-semibold">{{ formatDate(w.date) }}@if (w.end_date && w.end_date !== w.date) { – {{ formatDate(w.end_date) }} }</p>
+            </div>
+            <div class="card-soft p-4">
+              <p class="text-xs text-navy/50 uppercase font-semibold">Venue</p>
+              <p class="font-semibold">{{ w.venue }}</p>
+            </div>
+            <div class="card-soft p-4">
+              <p class="text-xs text-navy/50 uppercase font-semibold">Trainer</p>
+              <p class="font-semibold">{{ w.trainer }}</p>
+            </div>
+            <div class="card-soft p-4">
+              <p class="text-xs text-navy/50 uppercase font-semibold">Sessions</p>
+              <p class="font-semibold">{{ w.sessions || 'Live sessions' }}</p>
+            </div>
+          </div>
+        </div>
+        <img [src]="w.image || '/illustrations/workshop.svg'" [alt]="w.title" class="max-w-md mx-auto" appGsapReveal appGsapRevealDirection="right" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-surface">
+    <div class="container-r2 grid lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2 space-y-10">
+        <div appGsapReveal>
+          <h2 class="text-2xl font-bold mb-4">Agenda</h2>
+          <ul class="space-y-3">
+            @for (item of agenda(w); track item) {
+              <li class="flex gap-3 text-navy/70">
+                <span class="text-royal font-bold">→</span> {{ item }}
+              </li>
+            }
+          </ul>
+        </div>
+        @if (faqs(w).length) {
+          <div appGsapReveal>
+            <h2 class="text-2xl font-bold mb-4">FAQs</h2>
+            <div class="space-y-4">
+              @for (f of faqs(w); track f.q) {
+                <details class="card-soft p-4">
+                  <summary class="font-semibold cursor-pointer">{{ f.q }}</summary>
+                  <p class="text-navy/70 mt-3">{{ f.a }}</p>
+                </details>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      @if (w.type === 'upcoming') {
+        <div class="card-soft p-6 h-fit sticky top-24" appGsapReveal appGsapRevealDirection="right">
+          <h2 class="text-xl font-bold mb-4">Register</h2>
+          <form [formGroup]="form" (ngSubmit)="register()" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-1">Name</label>
+              <input formControlName="name" class="w-full rounded-xl border border-navy/15 px-4 py-3 text-sm outline-none focus:border-royal" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">Email</label>
+              <input type="email" formControlName="email" class="w-full rounded-xl border border-navy/15 px-4 py-3 text-sm outline-none focus:border-royal" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">Phone (optional)</label>
+              <input formControlName="phone" class="w-full rounded-xl border border-navy/15 px-4 py-3 text-sm outline-none focus:border-royal" />
+            </div>
+            <button type="submit" class="btn-primary w-full" [disabled]="submitting() || form.invalid">
+              {{ submitting() ? 'Submitting…' : 'Register Now' }}
+            </button>
+          </form>
+          @if (submitMsg()) {
+            <p class="mt-3 text-sm text-stem-green-dark">{{ submitMsg() }}</p>
+          }
+        </div>
+      }
+    </div>
+  </section>
+}

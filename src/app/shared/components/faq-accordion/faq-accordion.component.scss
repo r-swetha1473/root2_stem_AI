@@ -1,0 +1,29 @@
+.faq-accordion {
+  &__search {
+    margin-bottom: 1.25rem;
+  }
+
+  &__panel {
+    margin-bottom: 0.75rem !important;
+    border-radius: 0.875rem !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(0, 33, 71, 0.08);
+    overflow: hidden;
+  }
+
+  &__answer {
+    margin: 0;
+    padding: 0 0 0.5rem;
+    line-height: 1.65;
+    color: rgba(0, 33, 71, 0.78);
+  }
+
+  &__empty {
+    margin: 0;
+    padding: 1.5rem;
+    text-align: center;
+    color: rgba(0, 33, 71, 0.6);
+    background: rgba(0, 33, 71, 0.03);
+    border-radius: var(--r2-radius);
+  }
+}

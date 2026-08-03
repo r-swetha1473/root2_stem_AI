@@ -1,0 +1,26 @@
+<span
+  class="loading-spinner"
+  role="status"
+  [attr.aria-label]="label()"
+  [style.width.px]="size()"
+  [style.height.px]="size()"
+>
+  <svg viewBox="0 0 50 50" [attr.aria-hidden]="true">
+    <circle
+      class="loading-spinner__track"
+      cx="25"
+      cy="25"
+      r="20"
+      fill="none"
+      [attr.stroke-width]="stroke()"
+    />
+    <circle
+      class="loading-spinner__arc"
+      cx="25"
+      cy="25"
+      r="20"
+      fill="none"
+      [attr.stroke-width]="stroke()"
+    />
+  </svg>
+</span>

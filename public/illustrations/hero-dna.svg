@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="DNA helix">
+  <rect width="200" height="200" rx="24" fill="#e8f0fe"/>
+
+  <path d="M72 40c24 16 24 48 0 64s-24 48 0 64" stroke="#0056b3" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M128 40c-24 16-24 48 0 64s24 48 0 64" stroke="#68bb59" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M76 56h48M76 88h48M76 120h48M76 152h48" stroke="#002147" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+</svg>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Gallery 4">
+  <rect width="200" height="200" rx="24" fill="#e8f0fe"/>
+
+  <polygon points="100,52 140,88 120,140 80,140 60,88" fill="#e8f0fe" stroke="#0056b3" stroke-width="2"/><circle cx="100" cy="96" r="12" fill="#68bb59"/>
+</svg>

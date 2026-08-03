@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Neural network">
+  <rect width="200" height="200" rx="24" fill="#e8f0fe"/>
+
+  <circle cx="60" cy="60" r="10" fill="#0056b3" stroke="#002147" stroke-width="2"/>
+  <circle cx="60" cy="100" r="10" fill="#68bb59" stroke="#002147" stroke-width="2"/>
+  <circle cx="60" cy="140" r="10" fill="#0056b3" stroke="#002147" stroke-width="2"/>
+  <circle cx="100" cy="80" r="10" fill="#68bb59" stroke="#002147" stroke-width="2"/>
+  <circle cx="100" cy="120" r="10" fill="#0056b3" stroke="#002147" stroke-width="2"/>
+  <circle cx="140" cy="100" r="12" fill="#002147" stroke="#0056b3" stroke-width="2"/>
+  <path d="M70 60l24 16M70 100h20M70 140l24-16M70 100l20-12M70 100l20 12M110 80l22 16M110 120l22-16" stroke="#002147" stroke-width="1.5" opacity="0.5"/>
+</svg>

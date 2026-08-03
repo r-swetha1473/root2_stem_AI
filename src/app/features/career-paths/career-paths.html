@@ -1,0 +1,25 @@
+<section class="section-pad bg-mesh pt-28 md:pt-32">
+  <div class="container-r2">
+    <app-section-heading
+      eyebrow="Career Paths"
+      highlight="Nine pathways"
+      titleRest="into AI"
+      subtitle="Explore roles with skills, salary ranges, roadmaps, and growth ladders."
+    />
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (c of paths(); track c.id; let i = $index) {
+        <a
+          [routerLink]="['/career-paths', c.slug]"
+          class="card-soft p-6 block group"
+          appGsapReveal
+          [appGsapRevealDelay]="i * 0.05"
+        >
+          <img [src]="c.image || '/illustrations/prompt.svg'" [alt]="c.title" class="w-14 h-14 mb-4" />
+          <h2 class="text-xl font-bold group-hover:text-royal transition-colors">{{ c.title }}</h2>
+          <p class="text-navy/60 text-sm mt-2 mb-3">{{ c.subtitle }}</p>
+          <p class="text-navy/50 text-xs line-clamp-2">{{ c.overview || c.description }}</p>
+        </a>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Prompt engineering">
+  <rect width="200" height="200" rx="24" fill="#e8f0fe"/>
+
+  <rect x="32" y="48" width="136" height="104" rx="12" fill="#fff" stroke="#002147" stroke-width="2.5"/>
+  <path d="M52 72h96M52 92h72M52 112h84" stroke="#002147" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+  <path d="M52 72h56" stroke="#0056b3" stroke-width="3" stroke-linecap="round"/>
+  <path d="M52 92h40" stroke="#68bb59" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="148" cy="132" r="18" fill="#0056b3"/>
+  <path d="M142 132l4 4 8-8" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

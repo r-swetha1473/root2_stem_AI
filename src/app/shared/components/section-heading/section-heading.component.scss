@@ -1,0 +1,31 @@
+.section-heading {
+  max-width: 42rem;
+  margin-bottom: 2.5rem;
+
+  &--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  &__eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--r2-sky);
+  }
+
+  &__title {
+    margin: 0 0 0.875rem;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.15;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: rgba(0, 33, 71, 0.72);
+  }
+}

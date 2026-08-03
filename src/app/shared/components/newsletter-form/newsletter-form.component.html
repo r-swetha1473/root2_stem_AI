@@ -1,0 +1,28 @@
+<form class="newsletter-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <div class="newsletter-form__row">
+    <mat-form-field appearance="outline" class="newsletter-form__field">
+      <mat-label>Email address</mat-label>
+      <input matInput type="email" formControlName="email" autocomplete="email" />
+      @if (form.controls.email.touched && form.controls.email.hasError('required')) {
+        <mat-error>Email is required</mat-error>
+      }
+      @if (form.controls.email.touched && form.controls.email.hasError('email')) {
+        <mat-error>Enter a valid email</mat-error>
+      }
+    </mat-form-field>
+    <button type="submit" class="btn-primary newsletter-form__submit" [disabled]="submitting()">
+      @if (submitting()) {
+        <r2-loading-spinner [size]="18" />
+      } @else {
+        Subscribe
+      }
+    </button>
+  </div>
+
+  @if (success()) {
+    <p class="newsletter-form__success" role="status">{{ success() }}</p>
+  }
+  @if (error()) {
+    <p class="newsletter-form__error" role="alert">{{ error() }}</p>
+  }
+</form>

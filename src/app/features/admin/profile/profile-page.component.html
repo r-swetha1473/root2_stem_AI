@@ -1,0 +1,26 @@
+<div class="admin-page">
+  <header class="page-header">
+    <div>
+      <h1>Profile</h1>
+      <p class="subtitle">Update your admin display name (stored locally)</p>
+    </div>
+  </header>
+
+  <form [formGroup]="form" class="profile-form card-soft" (ngSubmit)="save()">
+    <div class="avatar">
+      <mat-icon>account_circle</mat-icon>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput [value]="username()" disabled />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Display Name</mat-label>
+      <input matInput formControlName="displayName" />
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" type="submit">Save Profile</button>
+  </form>
+</div>

@@ -1,0 +1,22 @@
+@import '../crud/admin-crud-page.component.scss';
+
+.profile-form {
+  max-width: 420px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+
+  mat-icon {
+    font-size: 4rem;
+    width: 4rem;
+    height: 4rem;
+    color: var(--r2-green);
+  }
+}

@@ -1,0 +1,351 @@
+<!-- Hero — premium AI company composition -->
+<section class="relative overflow-hidden min-h-[92vh] flex items-center section-pad !pt-10 !pb-16">
+  <app-tech-hero-bg />
+
+  <div class="container-r2 relative z-10 grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-16 items-center">
+    <div appGsapReveal>
+      @if (hero(); as h) {
+        <p class="text-xs md:text-sm font-semibold uppercase tracking-[0.22em] text-royal mb-5">
+          {{ h.badge || 'AI Talent · Training · Workforce' }}
+        </p>
+        <h1 class="font-display text-[2.75rem] md:text-6xl lg:text-[4.25rem] font-extrabold leading-[1.02] tracking-tight text-navy mb-5">
+          ROOT<span class="text-stem-green">2</span>
+          <span class="block text-royal font-bold text-[0.55em] md:text-[0.5em] tracking-[0.18em] mt-2">STEM AI</span>
+        </h1>
+        <p class="text-xl md:text-3xl font-semibold text-navy/90 max-w-xl leading-snug mb-4">
+          Building the Future AI Workforce<br class="hidden sm:block" />
+          from STEM Excellence
+        </p>
+        <p class="text-base md:text-lg text-navy/60 mb-9 max-w-lg leading-relaxed">
+          {{ h.description }}
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a [routerLink]="h.cta_secondary_link || '/workshops'" class="btn-primary">Join Workshop</a>
+          <a [routerLink]="h.cta_primary_link || '/programs'" class="btn-secondary">Explore Programs</a>
+        </div>
+      }
+    </div>
+
+    <div class="relative flex justify-center lg:justify-end" appGsapReveal appGsapRevealDirection="right">
+      <div class="absolute inset-8 rounded-full bg-gradient-to-br from-royal/15 to-stem-green/20 blur-3xl"></div>
+      <img
+        src="/images/logo.png"
+        alt="ROOT2 STEM AI"
+        class="relative w-full max-w-[260px] md:max-w-[320px] drop-shadow-2xl"
+        width="320"
+        height="400"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- Trusted Partners — horizontal logo ribbon -->
+<section class="py-3 md:py-4 border-y border-navy/5 bg-white">
+  <div class="container-r2 px-4 flex flex-row flex-wrap items-center justify-center gap-x-8 gap-y-3 md:gap-x-12">
+    <p class="text-[10px] md:text-xs font-semibold uppercase tracking-[0.18em] text-navy/40 shrink-0">
+      Trusted partners
+    </p>
+    <div class="flex flex-row flex-wrap items-center justify-center gap-x-8 md:gap-x-12 gap-y-2">
+      @for (p of partners(); track p.id) {
+        <a
+          [href]="p.website || '#'"
+          class="inline-flex items-center h-8 opacity-70 hover:opacity-100 transition"
+          [attr.aria-label]="p.title"
+        >
+          <img
+            [src]="partnerLogo(p)"
+            [alt]="p.title"
+            class="h-5 md:h-6 w-auto max-w-[140px] object-contain object-left"
+            loading="lazy"
+          />
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- About ROOT2 -->
+<section class="section-pad">
+  <div class="container-r2 grid lg:grid-cols-2 gap-12 items-center">
+    <div appGsapReveal>
+      <app-section-heading
+        eyebrow="About ROOT2"
+        highlight="STEM minds."
+        titleRest="AI careers."
+        subtitle="We bridge scientific rigor and artificial intelligence—building talent for evaluation, training, and domain AI roles."
+      />
+      @if (about(); as a) {
+        <p class="text-navy/70 leading-relaxed mb-6 -mt-8">{{ a.description }}</p>
+      }
+      <a routerLink="/about" class="btn-secondary">Our Story</a>
+    </div>
+    <div appGsapReveal appGsapRevealDirection="right">
+      <img src="/illustrations/molecule.svg" alt="STEM AI molecule" class="w-full max-w-lg mx-auto" />
+    </div>
+  </div>
+</section>
+
+<!-- AI Career Programs -->
+<section class="section-pad bg-surface">
+  <div class="container-r2">
+    <app-section-heading
+      eyebrow="AI Career Programs"
+      highlight="Production-ready"
+      titleRest="AI skills"
+      subtitle="Structured tracks with certificates, mentor feedback, and portfolio outcomes."
+    />
+    <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+      @for (p of programs(); track p.id; let i = $index) {
+        <article class="card-soft p-6 md:p-8 flex gap-5" appGsapReveal [appGsapRevealDelay]="i * 0.08">
+          <img [src]="p.image || '/illustrations/prompt.svg'" [alt]="p.title" class="w-16 h-16 shrink-0" />
+          <div>
+            <span class="text-xs font-semibold text-sky uppercase">{{ p.level }}</span>
+            <h3 class="text-xl font-bold mt-1 mb-2">{{ p.title }}</h3>
+            <p class="text-navy/60 text-sm mb-4 line-clamp-2">{{ p.description }}</p>
+            <a [routerLink]="['/programs', p.slug]" class="text-royal font-semibold text-sm hover:underline">
+              View program →
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+    <div class="text-center mt-10">
+      <a routerLink="/programs" class="btn-primary">All Programs</a>
+    </div>
+  </div>
+</section>
+
+<!-- Career Opportunities -->
+<section class="section-pad">
+  <div class="container-r2">
+    <app-section-heading
+      eyebrow="Career Paths"
+      highlight="Nine pathways"
+      titleRest="into AI"
+      subtitle="Explore roles from Prompt Engineer to Medical AI—with skills, salary, and growth maps."
+    />
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (c of careers(); track c.id; let i = $index) {
+        <a
+          [routerLink]="['/career-paths', c.slug]"
+          class="card-soft p-6 block group"
+          appGsapReveal
+          [appGsapRevealDelay]="i * 0.06"
+        >
+          <img [src]="c.image || '/illustrations/prompt.svg'" [alt]="c.title" class="w-12 h-12 mb-4" />
+          <h3 class="text-lg font-bold group-hover:text-royal transition-colors">{{ c.title }}</h3>
+          <p class="text-navy/60 text-sm mt-2">{{ c.subtitle }}</p>
+        </a>
+      }
+    </div>
+    <div class="text-center mt-10">
+      <a routerLink="/career-paths" class="btn-secondary">Explore All Paths</a>
+    </div>
+  </div>
+</section>
+
+<!-- Workshop Roadmap -->
+<section class="section-pad bg-navy text-white">
+  <div class="container-r2">
+    <app-section-heading
+      eyebrow="Workshop Roadmap"
+      highlight="Live learning"
+      titleRest="journey"
+      subtitle="Weekend intensives and hybrid labs—from AI literacy to evaluation bootcamps."
+    />
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      @for (step of ['Discover', 'Practice', 'Showcase']; track step; let i = $index) {
+        <div class="text-center p-6 rounded-2xl border border-white/10" appGsapReveal [appGsapRevealDelay]="i * 0.1">
+          <div class="w-12 h-12 rounded-full bg-sky/20 text-sky font-bold flex items-center justify-center mx-auto mb-4">
+            {{ i + 1 }}
+          </div>
+          <h3 class="font-bold text-lg mb-2">{{ step }}</h3>
+          <p class="text-white/60 text-sm">
+            @switch (step) {
+              @case ('Discover') { Foundations, safe prompting, and STEM use cases. }
+              @case ('Practice') { Hands-on labs with mentor critique and peer review. }
+              @case ('Showcase') { Capstone demos and certificate recognition. }
+            }
+          </p>
+        </div>
+      }
+    </div>
+    <div class="text-center mt-10">
+      <a routerLink="/workshops" class="btn-primary">View Workshops</a>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose ROOT2 -->
+<section class="section-pad bg-surface">
+  <div class="container-r2">
+    <app-section-heading
+      eyebrow="Why ROOT2"
+      highlight="Choose excellence"
+      titleRest="in AI education"
+      subtitle="Premium STEM–AI training designed for measurable career outcomes."
+    />
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (item of whyChoose; track item.title; let i = $index) {
+        <div class="card-soft p-6 md:p-8" appGsapReveal [appGsapRevealDelay]="i * 0.07">
+          <div class="w-12 h-12 rounded-2xl bg-royal/10 flex items-center justify-center mb-4 text-royal">
+            @switch (item.icon) {
+              @case ('stem') {
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+              }
+              @case ('mentor') {
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              }
+              @case ('career') {
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+              }
+              @case ('industry') {
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+              }
+              @case ('flexible') {
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              }
+              @case ('certificate') {
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+              }
+            }
+          </div>
+          <h3 class="text-lg font-bold mb-2">{{ item.title }}</h3>
+          <p class="text-navy/60 text-sm leading-relaxed">{{ item.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Upcoming Workshops -->
+<section class="section-pad">
+  <div class="container-r2">
+    <app-section-heading
+      eyebrow="Workshops"
+      title="Upcoming Workshops"
+      subtitle="Join live cohorts and build skills in days—not months."
+    />
+    <div class="grid md:grid-cols-3 gap-6">
+      @for (w of workshops(); track w.id; let i = $index) {
+        <article class="card-soft overflow-hidden" appGsapReveal [appGsapRevealDelay]="i * 0.08">
+          <img [src]="w.image || '/illustrations/workshop.svg'" [alt]="w.title" class="w-full h-40 object-cover bg-surface p-6" />
+          <div class="p-6">
+            <p class="text-sm text-sky font-semibold">{{ formatDate(w.date) }} · {{ w.venue }}</p>
+            <h3 class="text-lg font-bold mt-2 mb-2">{{ w.title }}</h3>
+            <p class="text-navy/60 text-sm mb-4 line-clamp-2">{{ w.description }}</p>
+            <a [routerLink]="['/workshops', w.id]" class="text-royal font-semibold text-sm">Register →</a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Success Stories -->
+<section class="section-pad bg-surface">
+  <div class="container-r2">
+    <app-section-heading eyebrow="Success Stories" highlight="Careers launched" titleRest="from STEM" />
+    <div class="grid md:grid-cols-3 gap-6">
+      @for (t of testimonials(); track t.id; let i = $index) {
+        <blockquote class="card-soft p-6 md:p-8" appGsapReveal [appGsapRevealDelay]="i * 0.1">
+          <p class="text-navy/70 italic mb-6 leading-relaxed">"{{ t.description }}"</p>
+          <footer>
+            <p class="font-bold">{{ t.title }}</p>
+            <p class="text-sm text-navy/50">{{ t.role }} · {{ t.company }}</p>
+          </footer>
+        </blockquote>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Statistics -->
+<section class="section-pad !py-16">
+  <div class="container-r2">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+      @for (stat of stats(); track stat.id; let i = $index) {
+        <div class="text-center p-6 rounded-2xl border border-navy/5 bg-white" appGsapReveal [appGsapRevealDelay]="i * 0.08">
+          <p class="text-4xl md:text-5xl font-bold gradient-text mb-2">{{ statDisplay(stat) }}</p>
+          <p class="text-navy/65 font-medium">{{ stat.title }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Preview -->
+<section class="section-pad">
+  <div class="container-r2">
+    <app-section-heading eyebrow="Gallery" title="Moments from ROOT2" subtitle="Workshops, certificates, and community events." />
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      @for (g of gallery(); track g.id; let i = $index) {
+        <a routerLink="/gallery" class="card-soft overflow-hidden aspect-square block" appGsapReveal [appGsapRevealDelay]="i * 0.05">
+          <img [src]="g.image || '/illustrations/gallery-1.svg'" [alt]="g.title" class="w-full h-full object-cover p-4 bg-surface" />
+        </a>
+      }
+    </div>
+    <div class="text-center mt-8">
+      <a routerLink="/gallery" class="btn-secondary">Full Gallery</a>
+    </div>
+  </div>
+</section>
+
+<!-- Latest Blogs -->
+<section class="section-pad bg-surface">
+  <div class="container-r2">
+    <app-section-heading eyebrow="Blog" title="Latest Insights" subtitle="Career guides, prompting frameworks, and AI workforce trends." />
+    <div class="grid md:grid-cols-3 gap-6">
+      @for (b of blogs(); track b.id; let i = $index) {
+        <article class="card-soft overflow-hidden" appGsapReveal [appGsapRevealDelay]="i * 0.08">
+          <img [src]="b.image || '/illustrations/blog-1.svg'" [alt]="b.title" class="w-full h-44 object-cover bg-white p-6" />
+          <div class="p-6">
+            <span class="text-xs font-semibold text-stem-green uppercase">{{ b.category }}</span>
+            <h3 class="text-lg font-bold mt-2 mb-2 line-clamp-2">{{ b.title }}</h3>
+            <p class="text-navy/60 text-sm mb-4">{{ b.read_time }} read</p>
+            <a [routerLink]="['/blog', b.slug]" class="text-royal font-semibold text-sm">Read article →</a>
+          </div>
+        </article>
+      }
+    </div>
+    <div class="text-center mt-10">
+      <a routerLink="/blog" class="btn-primary">All Articles</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-pad">
+  <div class="container-r2 max-w-3xl">
+    <app-section-heading eyebrow="FAQ" title="Common Questions" />
+    <div class="space-y-4">
+      @for (f of faqs(); track f.id; let i = $index) {
+        <details class="card-soft p-5 group" appGsapReveal [appGsapRevealDelay]="i * 0.05">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            {{ f.title }}
+            <span class="text-royal group-open:rotate-45 transition-transform text-xl">+</span>
+          </summary>
+          <p class="text-navy/70 mt-4 leading-relaxed">{{ f.answer }}</p>
+        </details>
+      }
+    </div>
+    <div class="text-center mt-8">
+      <a routerLink="/faq" class="btn-secondary">More FAQs</a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact CTA -->
+<section class="section-pad bg-mesh">
+  <div class="container-r2 text-center max-w-2xl mx-auto" appGsapReveal>
+    <h2 class="text-3xl md:text-5xl font-bold mb-4">Start your <span class="gradient-text">AI journey</span> today</h2>
+    <p class="text-lg text-navy/70 mb-8">
+      Whether you're exploring programs, booking a workshop, or hiring AI talent—we're here to help.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a routerLink="/contact" class="btn-primary">Contact Us</a>
+      <a routerLink="/programs" class="btn-secondary">Browse Programs</a>
+    </div>
+  </div>
+</section>

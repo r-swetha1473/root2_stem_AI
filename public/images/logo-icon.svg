@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ROOT2 STEM AI">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#002147"/>
+      <stop offset="55%" stop-color="#0056b3"/>
+      <stop offset="100%" stop-color="#00aeef"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#f4f8fc"/>
+  <!-- radical -->
+  <path d="M10 28h8l6 18 10-36h4" fill="none" stroke="url(#g)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 2 -->
+  <path d="M38 18c4.5 0 8 2.8 8 7.2 0 5.4-6.2 8.2-10.5 11.2H50v4.2H34.2v-3.4c5.8-4 12.2-7.2 12.2-12 0-2.2-1.6-3.6-4-3.6-2.2 0-3.8 1.2-4.6 3l-3.6-1.8c1.4-3.2 4.4-5 8-5z" fill="url(#g)"/>
+  <!-- neural dots -->
+  <circle cx="48" cy="46" r="2.2" fill="#68bb59"/>
+  <circle cx="54" cy="40" r="1.6" fill="#0056b3"/>
+  <circle cx="42" cy="50" r="1.4" fill="#00aeef"/>
+  <path d="M48 46l6-6M48 46l-6 4" stroke="#68bb59" stroke-width="1.2" opacity=".7"/>
+</svg>

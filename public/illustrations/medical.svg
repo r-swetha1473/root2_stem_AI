@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Medical AI">
+  <rect width="200" height="200" rx="24" fill="#e8f0fe"/>
+
+  <rect x="60" y="48" width="80" height="104" rx="12" fill="#fff" stroke="#002147" stroke-width="2.5"/>
+  <path d="M100 72v32M84 88h32" stroke="#0056b3" stroke-width="8" stroke-linecap="round"/>
+  <path d="M72 128h56" stroke="#002147" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+  <circle cx="148" cy="72" r="20" fill="#68bb59" stroke="#002147" stroke-width="2"/>
+  <path d="M148 62v20M138 72h20" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+</svg>

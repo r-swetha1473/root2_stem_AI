@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="AI evaluation">
+  <rect width="200" height="200" rx="24" fill="#e8f0fe"/>
+
+  <rect x="44" y="52" width="112" height="96" rx="12" fill="#fff" stroke="#002147" stroke-width="2.5"/>
+  <path d="M64 120V88M88 120V72M112 120V96M136 120V64" stroke="#0056b3" stroke-width="6" stroke-linecap="round"/>
+  <path d="M56 132h88" stroke="#002147" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="148" cy="56" r="16" fill="#68bb59" stroke="#002147" stroke-width="2"/>
+  <text x="148" y="61" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="12" font-weight="700">A+</text>
+</svg>

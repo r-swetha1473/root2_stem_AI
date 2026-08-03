@@ -1,0 +1,21 @@
+<section class="page-hero bg-mesh" [class.page-hero--compact]="compact()">
+  <div class="container-r2 page-hero__inner">
+    @if (breadcrumbs().length) {
+      <nav class="page-hero__breadcrumbs" aria-label="Breadcrumb">
+        @for (crumb of breadcrumbs(); track crumb.label; let last = $last) {
+          @if (!last && crumb.link) {
+            <a [routerLink]="crumb.link">{{ crumb.label }}</a>
+            <span class="page-hero__sep" aria-hidden="true">/</span>
+          } @else {
+            <span [attr.aria-current]="last ? 'page' : null">{{ crumb.label }}</span>
+          }
+        }
+      </nav>
+    }
+    <h1 class="page-hero__title">{{ title() }}</h1>
+    @if (subtitle()) {
+      <p class="page-hero__subtitle">{{ subtitle() }}</p>
+    }
+    <ng-content />
+  </div>
+</section>

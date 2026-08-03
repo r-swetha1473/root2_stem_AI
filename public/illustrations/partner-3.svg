@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 36" role="img" aria-label="Orbit Talent">
+  <circle cx="14" cy="18" r="10" fill="none" stroke="#00aeef" stroke-width="2"/>
+  <circle cx="14" cy="18" r="3" fill="#0056b3"/>
+  <text x="34" y="25" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#002147">Orbit</text>
+  <text x="92" y="25" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#0056b3">Talent</text>
+</svg>

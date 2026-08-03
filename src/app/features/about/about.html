@@ -1,0 +1,120 @@
+<section class="section-pad bg-mesh pt-28 md:pt-32">
+  <div class="container-r2 text-center max-w-3xl mx-auto" appGsapReveal>
+    <p class="text-sm font-semibold uppercase tracking-widest text-sky mb-4">About ROOT2</p>
+    <h1 class="text-4xl md:text-6xl font-bold mb-6">
+      Building the <span class="gradient-text">future AI workforce</span>
+    </h1>
+    <p class="text-xl text-navy/70 leading-relaxed">
+      A premium STEM–AI education and talent platform for scientists, graduates, and professionals.
+    </p>
+  </div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="section-pad">
+  <div class="container-r2 grid md:grid-cols-2 gap-8">
+    @if (section('mission'); as m) {
+      <article class="card-soft p-8 md:p-10" appGsapReveal>
+        <h2 class="text-2xl font-bold mb-2 gradient-text">{{ m.title }}</h2>
+        <p class="text-sky font-medium mb-4">{{ m.subtitle }}</p>
+        <p class="text-navy/70 leading-relaxed">{{ m.description }}</p>
+      </article>
+    }
+    @if (section('vision'); as v) {
+      <article class="card-soft p-8 md:p-10" appGsapReveal appGsapRevealDirection="right">
+        <h2 class="text-2xl font-bold mb-2 gradient-text">{{ v.title }}</h2>
+        <p class="text-sky font-medium mb-4">{{ v.subtitle }}</p>
+        <p class="text-navy/70 leading-relaxed">{{ v.description }}</p>
+      </article>
+    }
+  </div>
+</section>
+
+<!-- Founder -->
+@if (section('founder'); as f) {
+  <section class="section-pad bg-surface">
+    <div class="container-r2 grid lg:grid-cols-2 gap-12 items-center">
+      <div appGsapReveal>
+        <h2 class="text-3xl font-bold mb-4">{{ f.title }}</h2>
+        <p class="text-sky font-medium mb-4">{{ f.subtitle }}</p>
+        <p class="text-navy/70 leading-relaxed text-lg">{{ f.description }}</p>
+      </div>
+      <img src="/illustrations/founder.svg" alt="" class="max-w-md mx-auto" appGsapReveal appGsapRevealDirection="right" />
+    </div>
+  </section>
+}
+
+<!-- Journey & Timeline -->
+<section class="section-pad">
+  <div class="container-r2">
+    <app-section-heading eyebrow="Our Journey" highlight="Timeline" titleRest="of growth" />
+    <div class="max-w-2xl mx-auto space-y-8">
+      @for (item of [
+        { year: '2024', title: 'First STEM–AI workshops', desc: 'Pilot cohorts for prompt engineering and evaluation.' },
+        { year: '2025', title: 'Career path platform', desc: 'Nine mapped AI career tracks with placement support.' },
+        { year: '2026', title: 'Workforce partnerships', desc: 'Corporate upskilling and talent pipelines at scale.' }
+      ]; track item.year; let i = $index) {
+        <div class="flex gap-6" appGsapReveal [appGsapRevealDelay]="i * 0.1">
+          <div class="shrink-0 w-16 text-right">
+            <span class="font-bold text-royal">{{ item.year }}</span>
+          </div>
+          <div class="border-l-2 border-royal/20 pl-6 pb-2">
+            <h3 class="font-bold text-lg">{{ item.title }}</h3>
+            <p class="text-navy/60 mt-1">{{ item.desc }}</p>
+          </div>
+        </div>
+      }
+      @if (section('journey'); as j) {
+        <p class="text-center text-navy/70 mt-8 max-w-xl mx-auto">{{ j.description }}</p>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Values -->
+@if (section('values'); as val) {
+  <section class="section-pad bg-navy text-white">
+    <div class="container-r2 text-center max-w-3xl mx-auto" appGsapReveal>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">{{ val.title }}</h2>
+      <p class="text-sky text-lg font-medium mb-6">{{ val.subtitle }}</p>
+      <p class="text-white/70 leading-relaxed text-lg">{{ val.description }}</p>
+    </div>
+  </section>
+}
+
+<!-- Team -->
+<section class="section-pad bg-surface">
+  <div class="container-r2">
+    <app-section-heading eyebrow="Team" title="Meet the people behind ROOT2" />
+    <div class="grid md:grid-cols-3 gap-8">
+      @for (member of team(); track member.id; let i = $index) {
+        <article class="card-soft p-6 text-center" appGsapReveal [appGsapRevealDelay]="i * 0.1">
+          <img [src]="member.image || '/illustrations/team-1.svg'" [alt]="member.title" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover bg-surface" />
+          <h3 class="font-bold text-lg">{{ member.title }}</h3>
+          <p class="text-sky text-sm font-medium mb-3">{{ member.role }}</p>
+          <p class="text-navy/60 text-sm">{{ member.bio }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Partners -->
+<section class="section-pad">
+  <div class="container-r2">
+    <app-section-heading eyebrow="Partners" title="Trusted collaborators" />
+    <div class="grid sm:grid-cols-3 gap-6">
+      @for (p of partners(); track p.id; let i = $index) {
+        <article class="card-soft p-6 flex flex-col items-center text-center" appGsapReveal [appGsapRevealDelay]="i * 0.08">
+          <img [src]="p.logo || '/illustrations/partner-1.svg'" [alt]="p.title" class="h-16 mb-4" />
+          <h3 class="font-bold">{{ p.title }}</h3>
+          <p class="text-sm text-sky mb-2">{{ p.subtitle }}</p>
+          <p class="text-navy/60 text-sm">{{ p.description }}</p>
+        </article>
+      }
+    </div>
+    <div class="text-center mt-10">
+      <a routerLink="/contact" class="btn-primary">Partner With Us</a>
+    </div>
+  </div>
+</section>

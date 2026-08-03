@@ -1,0 +1,45 @@
+@if (notFound()) {
+  <section class="section-pad text-center">
+    <h1 class="text-3xl font-bold mb-4">Program not found</h1>
+    <a routerLink="/programs" class="btn-primary">Back to Programs</a>
+  </section>
+} @else if (program(); as p) {
+  <section class="section-pad bg-mesh pt-28 md:pt-32">
+    <div class="container-r2 grid lg:grid-cols-2 gap-12 items-start">
+      <div appGsapReveal>
+        <a routerLink="/programs" class="text-royal text-sm font-semibold mb-4 inline-block">← All Programs</a>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ p.title }}</h1>
+        <p class="text-xl text-sky font-medium mb-4">{{ p.subtitle }}</p>
+        <p class="text-navy/70 text-lg leading-relaxed mb-6">{{ p.description }}</p>
+        <div class="flex flex-wrap gap-3 mb-8">
+          <span class="px-4 py-2 rounded-full bg-white card-soft text-sm font-medium">{{ p.duration }}</span>
+          <span class="px-4 py-2 rounded-full bg-white card-soft text-sm font-medium">{{ p.level }}</span>
+          @if (p.certificate === 'Yes') {
+            <span class="px-4 py-2 rounded-full bg-stem-green/10 text-stem-green-dark text-sm font-medium">Certificate</span>
+          }
+        </div>
+        <a [routerLink]="p.enroll_link || '/contact'" class="btn-primary">Enroll Now</a>
+      </div>
+      <img [src]="p.image || '/illustrations/prompt.svg'" [alt]="p.title" class="max-w-md mx-auto" appGsapReveal appGsapRevealDirection="right" />
+    </div>
+  </section>
+
+  <section class="section-pad bg-surface">
+    <div class="container-r2 grid md:grid-cols-2 gap-12">
+      <div appGsapReveal>
+        <h2 class="text-2xl font-bold mb-4">Who is this for?</h2>
+        <p class="text-navy/70 leading-relaxed">{{ p.audience }}</p>
+      </div>
+      <div appGsapReveal appGsapRevealDirection="right">
+        <h2 class="text-2xl font-bold mb-4">What you'll gain</h2>
+        <ul class="space-y-3">
+          @for (b of benefits(p); track b) {
+            <li class="flex items-start gap-3 text-navy/70">
+              <span class="text-stem-green font-bold">✓</span> {{ b }}
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+}

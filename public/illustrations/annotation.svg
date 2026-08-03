@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Data annotation">
+  <rect width="200" height="200" rx="24" fill="#e8f0fe"/>
+
+  <rect x="40" y="44" width="72" height="56" rx="8" fill="#fff" stroke="#002147" stroke-width="2.5"/>
+  <rect x="48" y="52" width="56" height="40" rx="4" fill="#e8f0fe" stroke="#0056b3" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <rect x="88" y="100" width="72" height="56" rx="8" fill="#fff" stroke="#002147" stroke-width="2.5"/>
+  <circle cx="108" cy="120" r="6" fill="#68bb59"/>
+  <path d="M118 128h28M118 140h20" stroke="#002147" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+  <path d="M76 72l28 36" stroke="#0056b3" stroke-width="2.5"/>
+  <polygon points="104,108 112,108 108,114" fill="#0056b3"/>
+</svg>

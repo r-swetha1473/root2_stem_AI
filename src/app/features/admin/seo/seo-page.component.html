@@ -1,0 +1,29 @@
+<div class="admin-page">
+  <header class="page-header">
+    <div>
+      <h1>SEO Settings</h1>
+      <p class="subtitle">Default meta tags and social previews</p>
+    </div>
+  </header>
+
+  @if (loading()) {
+    <div class="loading-row"><r2-loading-spinner [size]="36" /></div>
+  } @else {
+    <form [formGroup]="form" class="settings-form card-soft" (ngSubmit)="save()">
+      <mat-form-field appearance="outline"><mat-label>Default Title</mat-label><input matInput formControlName="default_title" /></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Default Description</mat-label><textarea matInput rows="3" formControlName="default_description"></textarea></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>OG Image URL</mat-label><input matInput formControlName="og_image" /></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Twitter Handle</mat-label><input matInput formControlName="twitter_handle" /></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Keywords</mat-label><input matInput formControlName="keywords" /></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Canonical Base URL</mat-label><input matInput formControlName="canonical_base" /></mat-form-field>
+      @if (form.get('og_image')?.value) {
+        <img [src]="form.get('og_image')?.value" alt="OG preview" class="logo-preview" />
+      }
+      <div class="form-actions">
+        <button mat-flat-button color="primary" type="submit" [disabled]="saving()">
+          {{ saving() ? 'Saving…' : 'Save SEO' }}
+        </button>
+      </div>
+    </form>
+  }
+</div>

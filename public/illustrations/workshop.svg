@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Workshop">
+  <rect width="200" height="200" rx="24" fill="#e8f0fe"/>
+
+  <rect x="36" y="56" width="128" height="88" rx="12" fill="#fff" stroke="#002147" stroke-width="2.5"/>
+  <rect x="36" y="56" width="128" height="24" rx="12" fill="#0056b3"/>
+  <rect x="36" y="68" width="128" height="12" fill="#0056b3"/>
+  <circle cx="68" cy="108" r="14" fill="#e8f0fe" stroke="#68bb59" stroke-width="2"/>
+  <circle cx="100" cy="108" r="14" fill="#e8f0fe" stroke="#68bb59" stroke-width="2"/>
+  <circle cx="132" cy="108" r="14" fill="#e8f0fe" stroke="#68bb59" stroke-width="2"/>
+  <path d="M56 136h88" stroke="#002147" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+</svg>

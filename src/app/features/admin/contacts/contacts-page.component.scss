@@ -1,0 +1,77 @@
+@import '../crud/admin-crud-page.component.scss';
+
+.contacts-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .contacts-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.list-panel {
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.search-field {
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.unread {
+  font-weight: 700;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.detail-panel {
+  padding: 1.25rem;
+  position: sticky;
+  top: 1rem;
+
+  header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    h2 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+  }
+
+  dl {
+    margin: 0;
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  dt {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #64748b;
+  }
+
+  dd {
+    margin: 0 0 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .message-body {
+    white-space: pre-wrap;
+    line-height: 1.6;
+    padding: 0.75rem;
+    background: rgba(0, 33, 71, 0.04);
+    border-radius: 0.65rem;
+  }
+}

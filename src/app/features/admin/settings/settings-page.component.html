@@ -1,0 +1,191 @@
+<div class="saas-page">
+  <header class="saas-page-intro">
+    <div>
+      <h2>Website</h2>
+      <p>Manage brand, contact, social, SEO, and footer in focused sections — never one giant form.</p>
+    </div>
+  </header>
+
+  @if (loading()) {
+    <div class="saas-stack">
+      @for (i of [1, 2, 3]; track i) {
+        <div class="saas-card skeleton-card">
+          <div class="sk sk-title"></div>
+          <div class="sk sk-line"></div>
+          <div class="sk sk-line short"></div>
+          <div class="sk sk-btn"></div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="saas-stack">
+      <!-- Website Information -->
+      <section class="saas-card" [class.is-open]="isOpen('website')">
+        <button type="button" class="saas-card-head" (click)="toggle('website')">
+          <span class="saas-card-icon"><mat-icon>language</mat-icon></span>
+          <span class="saas-card-titles">
+            <strong>Website Information</strong>
+            <small>Name, tagline, logos, and short about</small>
+          </span>
+          <mat-icon class="chev">{{ isOpen('website') ? 'expand_less' : 'expand_more' }}</mat-icon>
+        </button>
+
+        @if (isOpen('website')) {
+          <form class="saas-card-body" [formGroup]="websiteForm" (ngSubmit)="saveWebsite()">
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>Website Name</mat-label>
+              <input matInput formControlName="site_name" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>Tagline</mat-label>
+              <input matInput formControlName="tagline" />
+            </mat-form-field>
+
+            <div class="upload-grid">
+              <div class="upload-block">
+                <label class="upload-label">Logo</label>
+                <app-image-upload formControlName="logo" label="Logo" buttonLabel="Upload Logo" folder="branding" />
+              </div>
+              <div class="upload-block">
+                <label class="upload-label">Favicon</label>
+                <app-image-upload formControlName="favicon" label="Favicon" buttonLabel="Upload Favicon" folder="branding" />
+              </div>
+            </div>
+
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>About</mat-label>
+              <textarea matInput rows="4" formControlName="about_short"></textarea>
+            </mat-form-field>
+
+            <div class="saas-card-actions">
+              <button mat-flat-button color="primary" type="submit" [disabled]="saving() === 'website'">
+                {{ saving() === 'website' ? 'Saving…' : 'Save Changes' }}
+              </button>
+            </div>
+          </form>
+        }
+      </section>
+
+      <!-- Contact -->
+      <section class="saas-card" [class.is-open]="isOpen('contact')">
+        <button type="button" class="saas-card-head" (click)="toggle('contact')">
+          <span class="saas-card-icon contact"><mat-icon>call</mat-icon></span>
+          <span class="saas-card-titles">
+            <strong>Contact Information</strong>
+            <small>Email, phone, address, and map</small>
+          </span>
+          <mat-icon class="chev">{{ isOpen('contact') ? 'expand_less' : 'expand_more' }}</mat-icon>
+        </button>
+
+        @if (isOpen('contact')) {
+          <form class="saas-card-body" [formGroup]="contactForm" (ngSubmit)="saveContact()">
+            <div class="two-col">
+              <mat-form-field appearance="outline"><mat-label>Email</mat-label><input matInput formControlName="email" /></mat-form-field>
+              <mat-form-field appearance="outline"><mat-label>Phone</mat-label><input matInput formControlName="phone" /></mat-form-field>
+            </div>
+            <mat-form-field appearance="outline" class="full"><mat-label>Address</mat-label><input matInput formControlName="address" /></mat-form-field>
+            <mat-form-field appearance="outline" class="full"><mat-label>Google Map Embed URL</mat-label><input matInput formControlName="map_embed" /></mat-form-field>
+            <div class="saas-card-actions">
+              <button mat-flat-button color="primary" type="submit" [disabled]="saving() === 'contact'">
+                {{ saving() === 'contact' ? 'Saving…' : 'Save Changes' }}
+              </button>
+            </div>
+          </form>
+        }
+      </section>
+
+      <!-- Social -->
+      <section class="saas-card" [class.is-open]="isOpen('social')">
+        <button type="button" class="saas-card-head" (click)="toggle('social')">
+          <span class="saas-card-icon social"><mat-icon>share</mat-icon></span>
+          <span class="saas-card-titles">
+            <strong>Social Media</strong>
+            <small>Public profile links</small>
+          </span>
+          <mat-icon class="chev">{{ isOpen('social') ? 'expand_less' : 'expand_more' }}</mat-icon>
+        </button>
+
+        @if (isOpen('social')) {
+          <form class="saas-card-body" [formGroup]="socialForm" (ngSubmit)="saveSocial()">
+            <div class="two-col">
+              <mat-form-field appearance="outline"><mat-label>Facebook</mat-label><input matInput formControlName="facebook" /></mat-form-field>
+              <mat-form-field appearance="outline"><mat-label>LinkedIn</mat-label><input matInput formControlName="linkedin" /></mat-form-field>
+              <mat-form-field appearance="outline"><mat-label>Instagram</mat-label><input matInput formControlName="instagram" /></mat-form-field>
+              <mat-form-field appearance="outline"><mat-label>YouTube</mat-label><input matInput formControlName="youtube" /></mat-form-field>
+              <mat-form-field appearance="outline" class="full"><mat-label>X / Twitter</mat-label><input matInput formControlName="twitter" /></mat-form-field>
+            </div>
+            <div class="saas-card-actions">
+              <button mat-flat-button color="primary" type="submit" [disabled]="saving() === 'social'">
+                {{ saving() === 'social' ? 'Saving…' : 'Save Changes' }}
+              </button>
+            </div>
+          </form>
+        }
+      </section>
+
+      <!-- SEO -->
+      <section class="saas-card" [class.is-open]="isOpen('seo')">
+        <button type="button" class="saas-card-head" (click)="toggle('seo')">
+          <span class="saas-card-icon seo"><mat-icon>travel_explore</mat-icon></span>
+          <span class="saas-card-titles">
+            <strong>SEO Settings</strong>
+            <small>Meta tags, OG image, and indexing</small>
+          </span>
+          <mat-icon class="chev">{{ isOpen('seo') ? 'expand_less' : 'expand_more' }}</mat-icon>
+        </button>
+
+        @if (isOpen('seo')) {
+          <form class="saas-card-body" [formGroup]="seoForm" (ngSubmit)="saveSeo()">
+            <mat-form-field appearance="outline" class="full"><mat-label>Meta Title</mat-label><input matInput formControlName="default_title" /></mat-form-field>
+            <mat-form-field appearance="outline" class="full"><mat-label>Meta Description</mat-label><textarea matInput rows="3" formControlName="default_description"></textarea></mat-form-field>
+            <mat-form-field appearance="outline" class="full"><mat-label>Keywords</mat-label><input matInput formControlName="keywords" /></mat-form-field>
+            <div class="upload-block">
+              <label class="upload-label">OG Image</label>
+              <app-image-upload formControlName="og_image" label="OG Image" buttonLabel="Upload OG Image" folder="seo" />
+            </div>
+            <div class="two-col">
+              <mat-form-field appearance="outline"><mat-label>Twitter Handle</mat-label><input matInput formControlName="twitter_handle" /></mat-form-field>
+              <mat-form-field appearance="outline"><mat-label>Canonical Base URL</mat-label><input matInput formControlName="canonical_base" /></mat-form-field>
+            </div>
+            <div class="hint-row">
+              <mat-icon>info</mat-icon>
+              <p>Robots.txt and sitemap.xml are served from <code>/robots.txt</code> and <code>/sitemap.xml</code>.</p>
+            </div>
+            <div class="saas-card-actions">
+              <button mat-flat-button color="primary" type="submit" [disabled]="saving() === 'seo'">
+                {{ saving() === 'seo' ? 'Saving…' : 'Save Changes' }}
+              </button>
+            </div>
+          </form>
+        }
+      </section>
+
+      <!-- Footer -->
+      <section class="saas-card" [class.is-open]="isOpen('footer')">
+        <button type="button" class="saas-card-head" (click)="toggle('footer')">
+          <span class="saas-card-icon footer"><mat-icon>view_day</mat-icon></span>
+          <span class="saas-card-titles">
+            <strong>Footer</strong>
+            <small>Copyright, links, newsletter copy</small>
+          </span>
+          <mat-icon class="chev">{{ isOpen('footer') ? 'expand_less' : 'expand_more' }}</mat-icon>
+        </button>
+
+        @if (isOpen('footer')) {
+          <form class="saas-card-body" [formGroup]="footerForm" (ngSubmit)="saveFooter()">
+            <mat-form-field appearance="outline" class="full"><mat-label>Copyright</mat-label><input matInput formControlName="copyright" /></mat-form-field>
+            <mat-form-field appearance="outline" class="full"><mat-label>Quick Links</mat-label><textarea matInput rows="2" formControlName="quick_links" placeholder="About|/about,Blog|/blog"></textarea></mat-form-field>
+            <mat-form-field appearance="outline" class="full"><mat-label>Programs / Policies Links</mat-label><textarea matInput rows="2" formControlName="programs_links"></textarea></mat-form-field>
+            <mat-form-field appearance="outline" class="full"><mat-label>Newsletter Text</mat-label><input matInput formControlName="newsletter_text" /></mat-form-field>
+            <mat-form-field appearance="outline" class="full"><mat-label>Footer Blurb</mat-label><textarea matInput rows="2" formControlName="description"></textarea></mat-form-field>
+            <div class="saas-card-actions">
+              <button mat-flat-button color="primary" type="submit" [disabled]="saving() === 'footer'">
+                {{ saving() === 'footer' ? 'Saving…' : 'Save Changes' }}
+              </button>
+            </div>
+          </form>
+        }
+      </section>
+    </div>
+  }
+</div>

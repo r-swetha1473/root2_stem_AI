@@ -1,0 +1,82 @@
+<div class="admin-page contacts-page">
+  <header class="page-header">
+    <div>
+      <h1>Contact Messages</h1>
+      <p class="subtitle">Read-only inbox with mark-read and delete</p>
+    </div>
+  </header>
+
+  <div class="contacts-layout">
+    <div class="list-panel card-soft">
+      <mat-form-field appearance="outline" subscriptSizing="dynamic" class="search-field">
+        <mat-label>Search</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput [value]="search()" (input)="onSearch($any($event.target).value)" />
+      </mat-form-field>
+
+      @if (loading()) {
+        <div class="loading-row"><r2-loading-spinner [size]="32" /></div>
+      } @else {
+        <table mat-table [dataSource]="rows()" class="admin-table">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let row" [class.unread]="!isRead(row)">
+              {{ row.name ?? row.title }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+          </ng-container>
+          <ng-container matColumnDef="subject">
+            <th mat-header-cell *matHeaderCellDef>Subject</th>
+            <td mat-cell *matCellDef="let row">{{ row.subject ?? '—' }}</td>
+          </ng-container>
+          <ng-container matColumnDef="read">
+            <th mat-header-cell *matHeaderCellDef>Read</th>
+            <td mat-cell *matCellDef="let row">
+              <span class="status-pill" [class.active]="isRead(row)" [class.inactive]="!isRead(row)">
+                {{ isRead(row) ? 'Read' : 'New' }}
+              </span>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-icon-button matTooltip="View" (click)="view(row)"><mat-icon>visibility</mat-icon></button>
+              @if (!isRead(row)) {
+                <button mat-icon-button matTooltip="Mark read" (click)="markRead(row)"><mat-icon>mark_email_read</mat-icon></button>
+              }
+              <button mat-icon-button matTooltip="Delete" color="warn" (click)="confirmDelete(row)"><mat-icon>delete</mat-icon></button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="columns"></tr>
+          <tr mat-row *matRowDef="let row; columns: columns" class="clickable" (click)="view(row)"></tr>
+        </table>
+        <mat-paginator
+          [length]="total()"
+          [pageIndex]="pageIndex()"
+          [pageSize]="pageSize()"
+          [pageSizeOptions]="[5, 10, 25]"
+          (page)="onPage($event)"
+        />
+      }
+    </div>
+
+    @if (selected(); as msg) {
+      <aside class="detail-panel card-soft">
+        <header>
+          <h2>{{ msg.name ?? msg.title }}</h2>
+          <button mat-icon-button (click)="selected.set(null)"><mat-icon>close</mat-icon></button>
+        </header>
+        <dl>
+          <dt>Email</dt><dd><a [href]="'mailto:' + msg.email">{{ msg.email }}</a></dd>
+          @if (msg.phone) { <dt>Phone</dt><dd>{{ msg.phone }}</dd> }
+          @if (msg.subject) { <dt>Subject</dt><dd>{{ msg.subject }}</dd> }
+          <dt>Message</dt><dd class="message-body">{{ msg.message ?? msg.description }}</dd>
+          <dt>Received</dt><dd>{{ msg.created_at | date: 'medium' }}</dd>
+        </dl>
+      </aside>
+    }
+  </div>
+</div>

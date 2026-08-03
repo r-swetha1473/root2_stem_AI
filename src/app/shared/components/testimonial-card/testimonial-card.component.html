@@ -1,0 +1,32 @@
+<article class="testimonial-card card-soft">
+  <div class="testimonial-card__rating" aria-label="Rating">
+    @for (star of stars(); track star) {
+      <span class="testimonial-card__star" aria-hidden="true">★</span>
+    }
+  </div>
+  @if (testimonial().description) {
+    <blockquote class="testimonial-card__quote">“{{ testimonial().description }}”</blockquote>
+  }
+  <footer class="testimonial-card__footer">
+    @if (testimonial().image) {
+      <img
+        class="testimonial-card__avatar"
+        [src]="testimonial().image"
+        [alt]="testimonial().title"
+        loading="lazy"
+      />
+    }
+    <div>
+      <p class="testimonial-card__name">{{ testimonial().title }}</p>
+      @if (testimonial().role || testimonial().company) {
+        <p class="testimonial-card__role">
+          {{ testimonial().role }}
+          @if (testimonial().role && testimonial().company) {
+            <span> · </span>
+          }
+          {{ testimonial().company }}
+        </p>
+      }
+    </div>
+  </footer>
+</article>

@@ -1,0 +1,9 @@
+<article #root class="stat-counter card-soft">
+  @if (icon()) {
+    <span class="stat-counter__icon" aria-hidden="true">{{ icon() }}</span>
+  }
+  <p class="stat-counter__value">
+    {{ displayValue() }}{{ suffix() }}
+  </p>
+  <p class="stat-counter__label">{{ label() }}</p>
+</article>

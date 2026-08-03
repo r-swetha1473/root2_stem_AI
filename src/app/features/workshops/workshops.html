@@ -1,0 +1,52 @@
+<section class="section-pad bg-mesh pt-28 md:pt-32">
+  <div class="container-r2">
+    <app-section-heading
+      eyebrow="Workshops"
+      highlight="Live"
+      titleRest="learning events"
+      subtitle="Weekend intensives and hybrid labs for STEM professionals."
+    />
+
+    <div class="flex justify-center gap-2 mb-10">
+      <button
+        type="button"
+        class="px-6 py-2.5 rounded-full font-semibold text-sm transition-colors"
+        [class.btn-primary]="tab() === 'upcoming'"
+        [class.btn-secondary]="tab() !== 'upcoming'"
+        (click)="setTab('upcoming')"
+      >
+        Upcoming
+      </button>
+      <button
+        type="button"
+        class="px-6 py-2.5 rounded-full font-semibold text-sm transition-colors"
+        [class.btn-primary]="tab() === 'past'"
+        [class.btn-secondary]="tab() !== 'past'"
+        (click)="setTab('past')"
+      >
+        Past
+      </button>
+    </div>
+
+    @if (filtered().length === 0) {
+      <p class="text-center text-navy/60">No {{ tab() }} workshops at the moment.</p>
+    } @else {
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (w of filtered(); track w.id; let i = $index) {
+          <article class="card-soft overflow-hidden" appGsapReveal [appGsapRevealDelay]="i * 0.08">
+            <img [src]="w.image || '/illustrations/workshop.svg'" [alt]="w.title" class="w-full h-44 object-cover bg-surface p-6" />
+            <div class="p-6">
+              <p class="text-sm text-sky font-semibold">{{ formatDate(w.date) }}</p>
+              <h2 class="text-xl font-bold mt-2 mb-2">{{ w.title }}</h2>
+              <p class="text-navy/60 text-sm mb-2">{{ w.venue }}</p>
+              <p class="text-navy/60 text-sm mb-4 line-clamp-2">{{ w.description }}</p>
+              <a [routerLink]="['/workshops', w.id]" class="text-royal font-semibold text-sm">
+                {{ w.type === 'upcoming' ? 'Register →' : 'View recap →' }}
+              </a>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>

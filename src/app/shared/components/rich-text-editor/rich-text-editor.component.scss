@@ -1,0 +1,7 @@
+.rich-text-editor {
+  &__host {
+    :deep(.ql-container) {
+      min-height: var(--editor-min-height, 220px);
+    }
+  }
+}

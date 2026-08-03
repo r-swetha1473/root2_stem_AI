@@ -1,0 +1,40 @@
+<div class="login-shell">
+  <div class="login-visual" aria-hidden="true">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <img src="/images/logo-icon.svg" alt="" class="login-mark" />
+    <p>ROOT2 Studio</p>
+    <h1>Operate your STEM × AI platform with calm precision.</h1>
+  </div>
+
+  <div class="login-card">
+    <img src="/images/logo-horizontal.svg" alt="ROOT2 STEM AI" class="login-logo" />
+    <h2>Sign in</h2>
+    <p class="sub">Admin access for content, workshops, and site settings.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" autocomplete="username" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" autocomplete="current-password" />
+      </mat-form-field>
+
+      <label class="remember">
+        <input type="checkbox" formControlName="rememberMe" />
+        <span>Remember me</span>
+      </label>
+
+      @if (error()) {
+        <p class="error">{{ error() }}</p>
+      }
+
+      <button mat-flat-button color="primary" class="submit" type="submit" [disabled]="loading()">
+        {{ loading() ? 'Signing in…' : 'Continue' }}
+      </button>
+    </form>
+  </div>
+</div>

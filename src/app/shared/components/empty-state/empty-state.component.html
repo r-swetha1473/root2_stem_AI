@@ -1,0 +1,8 @@
+<div class="empty-state card-soft">
+  <span class="empty-state__icon" aria-hidden="true">{{ icon() }}</span>
+  <h3 class="empty-state__title">{{ title() }}</h3>
+  <p class="empty-state__message">{{ message() }}</p>
+  @if (cta()) {
+    <a class="btn-primary empty-state__cta" [routerLink]="cta()!.link">{{ cta()!.label }}</a>
+  }
+</div>

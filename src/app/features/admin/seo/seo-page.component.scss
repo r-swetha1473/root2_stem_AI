@@ -1,0 +1,7 @@
+@import '../settings/settings-page.component.scss';
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}

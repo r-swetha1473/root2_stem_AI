@@ -1,0 +1,26 @@
+<section class="section-pad bg-mesh pt-28 md:pt-32">
+  <div class="container-r2">
+    <app-section-heading
+      eyebrow="Programs"
+      highlight="Learn"
+      titleRest="with ROOT2"
+      subtitle="Structured tracks with certificates, mentor feedback, and portfolio outcomes."
+    />
+    <div class="grid md:grid-cols-2 gap-8">
+      @for (p of programs(); track p.id; let i = $index) {
+        <article class="card-soft p-8 flex flex-col md:flex-row gap-6" appGsapReveal [appGsapRevealDelay]="i * 0.08">
+          <img [src]="p.image || '/illustrations/prompt.svg'" [alt]="p.title" class="w-20 h-20 shrink-0" />
+          <div class="flex-1">
+            <div class="flex flex-wrap gap-2 mb-2">
+              <span class="text-xs font-semibold px-3 py-1 rounded-full bg-sky/10 text-sky">{{ p.level }}</span>
+              <span class="text-xs font-semibold px-3 py-1 rounded-full bg-stem-green/10 text-stem-green-dark">{{ p.duration }}</span>
+            </div>
+            <h2 class="text-2xl font-bold mb-2">{{ p.title }}</h2>
+            <p class="text-navy/60 mb-4">{{ p.description }}</p>
+            <a [routerLink]="['/programs', p.slug]" class="btn-primary text-sm py-3 px-6 inline-flex">View Details</a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

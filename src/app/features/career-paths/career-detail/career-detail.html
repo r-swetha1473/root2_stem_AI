@@ -1,0 +1,57 @@
+@if (notFound()) {
+  <section class="section-pad text-center">
+    <h1 class="text-3xl font-bold mb-4">Career path not found</h1>
+    <a routerLink="/career-paths" class="btn-primary">Back to Career Paths</a>
+  </section>
+} @else if (career(); as c) {
+  <section class="section-pad bg-mesh pt-28 md:pt-32">
+    <div class="container-r2 grid lg:grid-cols-2 gap-12 items-start">
+      <div appGsapReveal>
+        <a routerLink="/career-paths" class="text-royal text-sm font-semibold mb-4 inline-block">← All Career Paths</a>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ c.title }}</h1>
+        <p class="text-xl text-sky font-medium mb-6">{{ c.subtitle }}</p>
+        <p class="text-navy/70 text-lg leading-relaxed">{{ c.overview || c.description }}</p>
+      </div>
+      <img [src]="c.image || '/illustrations/prompt.svg'" [alt]="c.title" class="max-w-sm mx-auto" appGsapReveal appGsapRevealDirection="right" />
+    </div>
+  </section>
+
+  <section class="section-pad bg-surface">
+    <div class="container-r2 grid md:grid-cols-2 gap-8">
+      @for (block of [
+        { title: 'Skills', items: list(c.skills) },
+        { title: 'Tools', items: list(c.tools) }
+      ]; track block.title; let i = $index) {
+        <div class="card-soft p-8" appGsapReveal [appGsapRevealDelay]="i * 0.1">
+          <h2 class="text-2xl font-bold mb-4">{{ block.title }}</h2>
+          <div class="flex flex-wrap gap-2">
+            @for (item of block.items; track item) {
+              <span class="px-3 py-1.5 rounded-full bg-royal/10 text-royal text-sm font-medium">{{ item }}</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container-r2 grid md:grid-cols-2 gap-8">
+      <div class="card-soft p-8" appGsapReveal>
+        <h2 class="text-2xl font-bold mb-4">Salary Range</h2>
+        <p class="text-navy/70 text-lg">{{ c.salary }}</p>
+      </div>
+      <div class="card-soft p-8" appGsapReveal appGsapRevealDirection="right">
+        <h2 class="text-2xl font-bold mb-4">Career Growth</h2>
+        <p class="text-navy/70 text-lg">{{ c.career_growth }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-navy text-white">
+    <div class="container-r2 max-w-3xl mx-auto text-center" appGsapReveal>
+      <h2 class="text-3xl font-bold mb-4">Roadmap</h2>
+      <p class="text-white/80 text-lg leading-relaxed">{{ c.roadmap }}</p>
+      <a routerLink="/programs" class="btn-primary mt-8 inline-flex">Find Related Programs</a>
+    </div>
+  </section>
+}

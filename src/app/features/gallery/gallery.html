@@ -1,0 +1,49 @@
+<section class="section-pad bg-mesh pt-28 md:pt-32">
+  <div class="container-r2">
+    <app-section-heading
+      eyebrow="Gallery"
+      title="Moments from ROOT2"
+      subtitle="Workshops, certificates, events, and community highlights."
+    />
+
+    <div class="flex flex-wrap justify-center gap-2 mb-10">
+      <button
+        type="button"
+        class="px-5 py-2 rounded-full text-sm font-semibold capitalize transition-colors"
+        [class.btn-primary]="!category()"
+        [class.btn-secondary]="category()"
+        (click)="category.set('')"
+      >
+        All
+      </button>
+      @for (cat of categories; track cat) {
+        <button
+          type="button"
+          class="px-5 py-2 rounded-full text-sm font-semibold capitalize transition-colors"
+          [class.btn-primary]="category() === cat"
+          [class.btn-secondary]="category() !== cat"
+          (click)="category.set(cat)"
+        >
+          {{ cat }}
+        </button>
+      }
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      @for (g of filtered(); track g.id; let i = $index) {
+        <button
+          type="button"
+          class="card-soft overflow-hidden aspect-square cursor-pointer text-left p-0 border-0 relative"
+          (click)="open(g)"
+          appGsapReveal
+          [appGsapRevealDelay]="i * 0.04"
+        >
+          <img [src]="g.image || '/illustrations/gallery-1.svg'" [alt]="g.title" class="w-full h-full object-cover p-4 bg-surface" />
+          @if (g.media_type === 'video') {
+            <span class="absolute bottom-3 right-3 bg-navy/80 text-white text-xs px-2 py-1 rounded">Video</span>
+          }
+        </button>
+      }
+    </div>
+  </div>
+</section>

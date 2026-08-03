@@ -1,0 +1,101 @@
+<div class="saas-shell" [class.is-collapsed]="collapsed()" [class.is-dark]="themeMode() === 'dark'">
+  @if (mobileOpen()) {
+    <button type="button" class="saas-backdrop" aria-label="Close menu" (click)="closeMobile()"></button>
+  }
+
+  <aside class="saas-sidebar" [class.mobile-open]="mobileOpen()">
+    <div class="saas-brand">
+      <img src="/images/logo-icon.svg" alt="" class="saas-brand-mark" width="36" height="36" />
+      @if (!collapsed() || mobileOpen()) {
+        <div class="saas-brand-copy">
+          <span class="saas-brand-name">ROOT2</span>
+          <span class="saas-brand-sub">Studio</span>
+        </div>
+      }
+    </div>
+
+    <div class="saas-nav-search" [class.hidden-collapsed]="collapsed() && !mobileOpen()">
+      <mat-icon>search</mat-icon>
+      <input type="search" placeholder="Search…" (input)="onSearch($event)" aria-label="Search navigation" />
+    </div>
+
+    <nav class="saas-nav" aria-label="Admin">
+      @for (group of filteredGroups(); track group.label) {
+        <div class="saas-nav-group">
+          @if (!collapsed() || mobileOpen()) {
+            <p class="saas-nav-label">{{ group.label }}</p>
+          }
+          @for (item of group.items; track item.path) {
+            <a
+              [routerLink]="item.path"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: item.exact === true }"
+              class="saas-nav-link"
+              [matTooltip]="collapsed() && !mobileOpen() ? item.label : ''"
+              matTooltipPosition="right"
+              (click)="closeMobile()"
+            >
+              <mat-icon>{{ item.icon }}</mat-icon>
+              @if (!collapsed() || mobileOpen()) {
+                <span class="saas-nav-text">{{ item.label }}</span>
+                @if (item.badgeKey === 'contacts' && unreadCount() > 0) {
+                  <span class="saas-badge">{{ unreadCount() }}</span>
+                }
+              }
+            </a>
+          }
+        </div>
+      }
+    </nav>
+
+    <div class="saas-sidebar-foot">
+      <a routerLink="/" class="saas-nav-link ghost" target="_blank" rel="noopener">
+        <mat-icon>open_in_new</mat-icon>
+        @if (!collapsed() || mobileOpen()) {
+          <span>View site</span>
+        }
+      </a>
+    </div>
+  </aside>
+
+  <div class="saas-main">
+    <header class="saas-topbar">
+      <div class="saas-topbar-left">
+        <button type="button" class="saas-icon-btn" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div>
+          <p class="saas-eyebrow">Admin</p>
+          <h1 class="saas-page-title">{{ pageTitle() }}</h1>
+        </div>
+      </div>
+
+      <div class="saas-topbar-right">
+        <button type="button" class="saas-icon-btn" (click)="toggleTheme()" [matTooltip]="themeMode() === 'dark' ? 'Light mode' : 'Dark mode'">
+          <mat-icon>{{ themeMode() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        </button>
+
+        <a routerLink="/admin/contacts" class="saas-icon-btn" matTooltip="Inbox">
+          <mat-icon [matBadge]="unreadCount() || null" matBadgeColor="warn" matBadgeSize="small">notifications</mat-icon>
+        </a>
+
+        <a routerLink="/admin/profile" class="saas-user">
+          <span class="saas-avatar">{{ displayName().charAt(0).toUpperCase() }}</span>
+          <span class="saas-user-meta">
+            <strong>{{ displayName() }}</strong>
+            <small>Administrator</small>
+          </span>
+        </a>
+
+        <button type="button" class="saas-ghost-btn" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="saas-content">
+      <router-outlet />
+    </main>
+  </div>
+</div>

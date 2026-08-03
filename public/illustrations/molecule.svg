@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Molecule">
+  <rect width="200" height="200" rx="24" fill="#e8f0fe"/>
+
+  <circle cx="100" cy="100" r="14" fill="#0056b3" stroke="#002147" stroke-width="2.5"/>
+  <circle cx="60" cy="72" r="10" fill="#68bb59" stroke="#002147" stroke-width="2"/>
+  <circle cx="140" cy="72" r="10" fill="#68bb59" stroke="#002147" stroke-width="2"/>
+  <circle cx="56" cy="132" r="10" fill="#68bb59" stroke="#002147" stroke-width="2"/>
+  <circle cx="144" cy="132" r="10" fill="#68bb59" stroke="#002147" stroke-width="2"/>
+  <path d="M68 78l24 18M132 78l-24 18M66 126l28-20M138 126l-28-20" stroke="#002147" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
