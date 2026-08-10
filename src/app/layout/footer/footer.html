@@ -19,16 +19,16 @@
             </span>
           </span>
         </a>
-        <p class="text-white/75 text-sm leading-relaxed mb-1">{{ footer()?.subtitle }}</p>
-        <p class="text-white/55 text-sm">{{ footer()?.description }}</p>
+        <p class="footer-muted text-sm leading-relaxed mb-1">{{ tagline() }}</p>
+        <p class="footer-muted text-sm opacity-80">{{ blurb() }}</p>
       </div>
 
       <div class="min-w-0">
-        <h3 class="font-display font-semibold text-base mb-3">Quick Links</h3>
-        <ul class="space-y-2">
-          @for (link of quickLinks; track link.path) {
+        <h3 class="footer-heading font-display font-semibold text-base mb-3">Quick Links</h3>
+        <ul class="space-y-2.5">
+          @for (link of quickLinks(); track link.path + link.label) {
             <li>
-              <a [routerLink]="link.path" class="text-white/70 hover:text-sky text-sm transition-colors">
+              <a [routerLink]="link.path" class="footer-link text-sm transition-colors">
                 {{ link.label }}
               </a>
             </li>
@@ -37,11 +37,11 @@
       </div>
 
       <div class="min-w-0">
-        <h3 class="font-display font-semibold text-base mb-3">Programs</h3>
-        <ul class="space-y-2">
-          @for (link of programLinks; track link.path) {
+        <h3 class="footer-heading font-display font-semibold text-base mb-3">Programs</h3>
+        <ul class="space-y-2.5">
+          @for (link of programLinks(); track link.path + link.label) {
             <li>
-              <a [routerLink]="link.path" class="text-white/70 hover:text-sky text-sm transition-colors">
+              <a [routerLink]="link.path" class="footer-link text-sm transition-colors">
                 {{ link.label }}
               </a>
             </li>
@@ -50,32 +50,34 @@
       </div>
 
       <div class="min-w-0 overflow-hidden">
-        <h3 class="font-display font-semibold text-base mb-3">Stay Updated</h3>
-        <p class="text-white/70 text-sm mb-3">{{ footer()?.newsletter_text }}</p>
+        <h3 class="footer-heading font-display font-semibold text-base mb-3">Stay Updated</h3>
+        <p class="footer-muted text-sm mb-3">{{ newsletterText() }}</p>
         <app-newsletter />
-        <div class="mt-5 space-y-2 text-sm text-white/70 break-words">
+        <div class="mt-5 space-y-2 text-sm break-words">
           @if (settings()?.email) {
-            <a [href]="'mailto:' + settings()!.email" class="block hover:text-sky">{{ settings()!.email }}</a>
+            <a [href]="'mailto:' + settings()!.email" class="footer-link block">{{ settings()!.email }}</a>
+          } @else {
+            <a href="mailto:hello@root2stemai.com" class="footer-link block">hello@root2stemai.com</a>
           }
           @if (settings()?.phone) {
-            <a [href]="'tel:' + settings()!.phone" class="block hover:text-sky">{{ settings()!.phone }}</a>
+            <a [href]="'tel:' + settings()!.phone" class="footer-link block">{{ settings()!.phone }}</a>
           }
         </div>
       </div>
     </div>
 
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-white/10">
-      <p class="text-white/50 text-sm text-center md:text-left">{{ settings()?.copyright }}</p>
+      <p class="footer-muted text-sm text-center md:text-left opacity-80">{{ copyright() }}</p>
       <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
         @for (s of socials(); track s.id) {
           <a
-            [href]="s.url"
+            [href]="s.url || '#'"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-white/60 hover:text-sky transition-colors text-sm capitalize"
-            [attr.aria-label]="s.title"
+            class="footer-link text-sm capitalize"
+            [attr.aria-label]="s.title || s.platform"
           >
-            {{ s.platform }}
+            {{ s.platform || s.title }}
           </a>
         }
       </div>

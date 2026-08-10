@@ -503,6 +503,16 @@ function seedIfEmpty_() {
       canonical_base: 'https://root2-stem-ai.vercel.app',
       status: 'active', created_at: now, updated_at: now, display_order: 1,
     }],
+    Footer: [{
+      id: 'footer-1',
+      title: 'ROOT2 STEM AI',
+      subtitle: 'Building the Future AI Workforce from STEM Excellence',
+      description: 'AI Talent | Training | Workforce Solutions',
+      quick_links: 'About|/about,Programs|/programs,Workshops|/workshops,Blog|/blog,Contact|/contact',
+      programs_links: 'Prompt Engineering|/programs,AI Trainer|/career-paths/ai-trainer,Medical AI|/career-paths/medical-ai',
+      newsletter_text: 'Get STEM–AI career insights and workshop invites.',
+      status: 'active', created_at: now, updated_at: now, display_order: 1,
+    }],
     Statistics: [
       { id: 'stat-1', title: 'Learners Trained', value: 1200, suffix: '+', status: 'active', created_at: now, updated_at: now, display_order: 1 },
       { id: 'stat-2', title: 'Career Pathways', value: 9, suffix: '', status: 'active', created_at: now, updated_at: now, display_order: 2 },

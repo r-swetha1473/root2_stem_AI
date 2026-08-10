@@ -1,10 +1,15 @@
 /** Parse "Label|/path,Label2|/path2" footer/link strings from CMS sheets. */
-export function parseLinks(raw?: string): { label: string; path: string }[] {
-  if (!raw) return [];
-  return raw.split(',').map((item) => {
-    const [label, path] = item.split('|');
-    return { label: label?.trim() ?? '', path: path?.trim() || '#' };
-  });
+export function parseLinks(raw?: string | null): { label: string; path: string }[] {
+  if (!raw || !String(raw).trim()) return [];
+  return String(raw)
+    .split(',')
+    .map((item) => {
+      const parts = item.split('|');
+      const label = (parts[0] ?? '').trim();
+      const path = (parts[1] ?? '').trim();
+      return { label, path: path || '#' };
+    })
+    .filter((link) => !!link.label);
 }
 
 /** Parse pipe-separated lists from CMS (benefits, skills, agenda, etc.). */
